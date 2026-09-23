@@ -387,6 +387,9 @@ static_resources:
                   duration_ms: "%DURATION%"
                   route_name: "%ROUTE_NAME%"
                   requested_server_name: "%REQUESTED_SERVER_NAME%"
+          # Python's http.client (requests/httpie) always sends CONNECT as HTTP/1.0, which Envoy rejects by default.
+          http_protocol_options:
+            accept_http_10: true
           route_config:
             name: https_proxy_route
             virtual_hosts:
